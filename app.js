@@ -53,10 +53,10 @@ bot.dialog(ASK_EMAIL_DIALOG_NAME, [
         builder.Prompts.text(session, 'Please, enter your email');
     },
     (session, result, next) => {
-        var email = results.response;
+        var email = result.response.toString();
 
         if (session.message.address.channelId.toString().toLowerCase() === 'skype') { // fix for https://github.com/Microsoft/BotBuilder/issues/3328
-            const matchedEmail = results.response.toString().match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
+            const matchedEmail = result.response.toString().match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
             if (matchedEmail !== null) {
                 email = matchedEmail[0];
             }
